@@ -143,6 +143,7 @@ const testBlocks = test.generateTestStimuli();
 var pupil_dilation_experiment = [];
 pupil_dilation_experiment.push(instruction.generateInstructionNode(correct_responses));
 pupil_dilation_experiment.push(training.setupStartTrainingBlock());
+pupil_dilation_experiment.push(training.setupTrainingBlock());
 
 
 // choice_reaction_time_experiment.push(training.setupTrainingBlock());

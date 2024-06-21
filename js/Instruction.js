@@ -18,7 +18,7 @@ class Instruction {
             '</div>'
         ];          
         this.sumInstructTime = 0; // ms
-        this.instructTimeThresh = 5; // in seconds
+        this.instructTimeThresh = 10; // in seconds
     }
 
     getInstructFeedback() {

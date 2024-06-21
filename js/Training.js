@@ -62,10 +62,11 @@ class Training {
 
     setupTrainingBlock() {
         const trainingStimuli = this.generateTrainingStimuli();
-    
+        
+
         const selectedStimuli = [];
+
         for (let i = 0; i < this.trainingLen; i++) {
-            // Randomly select either 0 or 1 and push the corresponding stimulus to selectedStimuli
             const randomIndex = Math.floor(Math.random() * trainingStimuli.length);
             selectedStimuli.push(trainingStimuli[randomIndex]);
         }
@@ -86,9 +87,9 @@ class Training {
             incorrect_text: '<div class="centerbox"><div style="color:red;" class="center-text">Incorrect</div></div>',
             timeout_message: '<div class="centerbox"><div class="center-text">Please Respond Faster</div></div>',
             choices: this.choices,
-            timing_response: 500,
-            timing_stim: 500,
-            timing_feedback_duration: 100,
+            timing_response: 800,
+            timing_stim: 800,
+            timing_feedback_duration: 500,
             show_stim_with_feedback: false,
             timing_post_trial: 500,  // You need to define `post_trial_gap` if you want to use it
             on_finish: function(data) {
@@ -99,14 +100,10 @@ class Training {
     
                 // Calculate correct response rate
                 const correctRate = (correctResponses / totalTrials) * 100;
-    
-                // If correct rate exceeds 90%, end training session
                 if (correctRate > 90) {
                     jsPsych.endCurrentTimeline();
-                    jsPsych.addNodeToEndOfTimeline(this.trainingPassedMessage);
                 } else if (totalTrials === this.trainingLen) {
                     jsPsych.endCurrentTimeline();
-                    jsPsych.addNodeToEndOfTimeline(this.trainingRetryMessage);
                 }
             }.bind(this) // Bind `this` to ensure proper context
         };
